@@ -5,4 +5,12 @@
   </PropertyGroup>
 
 
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 's17738_cw3' ">
+    <StartAction>Project</StartAction>
+    <LaunchUrl>api</LaunchUrl>
+    <ApplicationURL>http://localhost:5000</ApplicationURL>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
 </Project>
