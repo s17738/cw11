@@ -7,7 +7,8 @@
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 's17738_cw3' ">
     <StartAction>Project</StartAction>
-    <LaunchUrl>api</LaunchUrl>
+    <ExternalConsole>true</ExternalConsole>
+    <LaunchUrl>api/doctors</LaunchUrl>
     <ApplicationURL>http://localhost:5000</ApplicationURL>
   </PropertyGroup>
   <ItemGroup>
