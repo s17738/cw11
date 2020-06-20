@@ -22,6 +22,8 @@ namespace s17738_cw11.Models
 
         public DbSet<Prescription> Prescriptions { get; set; }
 
+        public DbSet<PrescriptionMedicament> PrescriptionMedicaments { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Doctor>(entity =>
@@ -80,7 +82,16 @@ namespace s17738_cw11.Models
                     .IsRequired();
 
                 entity.Property(e => e.IdDoctor)
-                       .IsRequired();
+                    .IsRequired();
+            });
+
+            modelBuilder.Entity<PrescriptionMedicament>(entity =>
+            {
+                entity.HasKey(e => new { e.IdPrescription, e.IdMedicament });
+
+                entity.Property(e => e.Details)
+                    .HasMaxLength(100)
+                    .IsRequired();
             });
         }
     }
