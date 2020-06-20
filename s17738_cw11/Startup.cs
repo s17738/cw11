@@ -32,7 +32,7 @@ namespace s17738_cw11
             {
                 options.UseSqlServer("Data Source=localhost,1433; Initial Catalog=s17738; User ID=sa;Password=na2187en23geqtwgdins");
             });
-            services.AddScoped<SqlServerDbService, SqlServerDbService>(); //todo use interface instead of implementation
+            services.AddScoped<DbService, SqlServerDbService>(); //todo use interface instead of implementation
             services.AddControllers();
         }
 

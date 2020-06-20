@@ -7,7 +7,7 @@ using s17738_cw11.Models;
 
 namespace s17738_cw11.DAL
 {
-    public class SqlServerDbService
+    public class SqlServerDbService : DbService
     {
         private readonly S17738DbContext _context;
 
@@ -21,21 +21,49 @@ namespace s17738_cw11.DAL
             return await _context.Doctors.ToListAsync();
         }
 
-        public async Task<Doctor> GetDoctor(int id)
+        public async Task<Doctor> GetDoctorAsync(int id)
         {
             return await _context.Doctors.FindAsync(id);
         }
 
-        public void CreateDoctor(string doctor)
+        public async Task<Doctor> CreateDoctorAsync(Doctor doctor)
         {
+            var d = new Doctor()
+            {
+                FirstName = doctor.FirstName,
+                LastName = doctor.LastName,
+                Email = doctor.Email
+            };
+            _context.Doctors.Add(d);
+            await _context.SaveChangesAsync();
+            return d;
         }
 
-        public void UpdateDoctor(int id, string doctor)
+        public async Task<bool> UpdateDoctorAsync(int id, Doctor doctor)
         {
+            var d = new Doctor()
+            {
+                FirstName = doctor.FirstName,
+                LastName = doctor.LastName,
+                Email = doctor.Email
+            };
+            _context.Entry(d).Property("FirstName").IsModified = true;
+            _context.Entry(d).Property("LastName").IsModified = true;
+            _context.Entry(d).Property("Email").IsModified = true;
+
+            return (await _context.SaveChangesAsync()) > 0;
         }
 
-        public void DeleteDoctor(int id)
+        public async Task<bool> DeleteDoctorAsync(int id)
         {
+            var d = new Doctor()
+            {
+                IdDoctor = id
+            };
+
+            _context.Attach(d);
+            _context.Remove(d);
+            return (await _context.SaveChangesAsync()) > 0;
         }
     }
 }

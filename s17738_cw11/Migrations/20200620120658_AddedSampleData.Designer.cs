@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using s17738_cw11.Models;
 
 namespace s17738_cw11.Migrations
 {
     [DbContext(typeof(S17738DbContext))]
-    partial class S17738DbContextModelSnapshot : ModelSnapshot
+    [Migration("20200620120658_AddedSampleData")]
+    partial class AddedSampleData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

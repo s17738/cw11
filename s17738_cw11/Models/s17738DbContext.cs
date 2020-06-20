@@ -39,6 +39,10 @@ namespace s17738_cw11.Models
                 entity.Property(e => e.Email)
                     .IsRequired()
                     .HasMaxLength(100);
+
+                entity.HasData(new Doctor { IdDoctor = 1, FirstName = "Adam", LastName = "Nowak", Email = "nowak@ddd.com" });
+                entity.HasData(new Doctor { IdDoctor = 2, FirstName = "Jan", LastName = "Kowalski", Email = "kowalski@ddd.com" });
+                entity.HasData(new Doctor { IdDoctor = 3, FirstName = "Kasia", LastName = "Nowak", Email = "kasian@ddd.com" });
             });
 
             modelBuilder.Entity<Patient>(entity =>
@@ -53,6 +57,10 @@ namespace s17738_cw11.Models
 
                 entity.Property(e => e.Birthdate)
                     .IsRequired();
+
+                entity.HasData(new Patient { Idpatient = 1, FirstName = "Marcin", LastName = "Adamczyk", Birthdate = DateTime.Now });
+                entity.HasData(new Patient { Idpatient = 2, FirstName = "Tomasz", LastName = "Malinowski", Birthdate = DateTime.Now });
+                entity.HasData(new Patient { Idpatient = 3, FirstName = "Monika", LastName = "Domska", Birthdate = DateTime.Now });
             });
 
             modelBuilder.Entity<Medicament>(entity =>
@@ -68,6 +76,10 @@ namespace s17738_cw11.Models
                 entity.Property(e => e.Type)
                     .IsRequired()
                     .HasMaxLength(100);
+
+                entity.HasData(new Medicament { IdMedicament = 1, Name = "Ibuprom", Description = "For headache", Type = "basic" });
+                entity.HasData(new Medicament { IdMedicament = 2, Name = "Apap", Description = "For headache", Type = "basic" });
+                entity.HasData(new Medicament { IdMedicament = 3, Name = "Nospa", Description = "For headache", Type = "basic" });
             });
 
             modelBuilder.Entity<Prescription>(entity =>
@@ -83,6 +95,10 @@ namespace s17738_cw11.Models
 
                 entity.Property(e => e.IdDoctor)
                     .IsRequired();
+
+                entity.HasData(new Prescription { IdPrescription = 1, Date = DateTime.Now, DueDate = DateTime.Now.AddDays(30), IdPatient = 1, IdDoctor = 1 });
+                entity.HasData(new Prescription { IdPrescription = 2, Date = DateTime.Now, DueDate = DateTime.Now.AddDays(30), IdPatient = 2, IdDoctor = 2 });
+                entity.HasData(new Prescription { IdPrescription = 3, Date = DateTime.Now, DueDate = DateTime.Now.AddDays(30), IdPatient = 3, IdDoctor = 3 });
             });
 
             modelBuilder.Entity<PrescriptionMedicament>(entity =>
@@ -92,6 +108,10 @@ namespace s17738_cw11.Models
                 entity.Property(e => e.Details)
                     .HasMaxLength(100)
                     .IsRequired();
+
+                entity.HasData(new PrescriptionMedicament { IdMedicament = 1, IdPrescription = 1, Details = "none" });
+                entity.HasData(new PrescriptionMedicament { IdMedicament = 3, IdPrescription = 1, Details = "1x1" });
+                entity.HasData(new PrescriptionMedicament { IdMedicament = 1, IdPrescription = 2, Details = "2x2" });
             });
         }
     }
