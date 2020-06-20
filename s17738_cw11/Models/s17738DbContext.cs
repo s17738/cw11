@@ -20,6 +20,8 @@ namespace s17738_cw11.Models
 
         public DbSet<Medicament> Medicaments { get; set; }
 
+        public DbSet<Prescription> Prescriptions { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Doctor>(entity =>
@@ -64,6 +66,21 @@ namespace s17738_cw11.Models
                 entity.Property(e => e.Type)
                     .IsRequired()
                     .HasMaxLength(100);
+            });
+
+            modelBuilder.Entity<Prescription>(entity =>
+            {
+                entity.Property(e => e.Date)
+                    .IsRequired();
+
+                entity.Property(e => e.DueDate)
+                    .IsRequired();
+
+                entity.Property(e => e.IdPatient)
+                    .IsRequired();
+
+                entity.Property(e => e.IdDoctor)
+                       .IsRequired();
             });
         }
     }
